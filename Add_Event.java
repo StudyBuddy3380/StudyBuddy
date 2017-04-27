@@ -1,4 +1,36 @@
-package studybuddy.csc3380.studybuddy;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Intent;
+import android.icu.util.Calendar;
+import android.support.annotation.NonNull;
+
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
+
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Button;
+
+public class Add_Event extends AppCompatActivity {
+
+
+    Button date_Select, finishButton;
+    TextView date_Display;
+    EditText event_Name;
+    EditText event_Location;
+    Spinner spinner;
+
+    RadioButton package com.example.jay.mutablelist;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -126,17 +158,13 @@ public class Add_Event extends AppCompatActivity {
         /*event_Name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                     event_Name.setText("");
-
             }
         });*/
         /*event_Location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 event_Location.setText("");
-
             }
         });*/
     }
@@ -144,7 +172,6 @@ public class Add_Event extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         data.putExtra("EventName", event_Name.getText());
         data.putExtra("EventDate",date_Display.getText());
         if (priorityLow.isChecked()) {
@@ -162,4 +189,3 @@ public class Add_Event extends AppCompatActivity {
     }
  */
 }
-
