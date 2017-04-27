@@ -94,7 +94,7 @@ public class Add_Event extends AppCompatActivity {
                 }
                 data.putExtra("EventType",spinner.getSelectedItem().toString());
                 data.putExtra("EventLocation",event_Location.getText());
-                setResult(1,data);
+                setResult(RESULT_OK,data);
                 finish();
 
             }
