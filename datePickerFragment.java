@@ -1,29 +1,24 @@
 package studybuddy.csc3380.studybuddy;
 
-        import android.app.Dialog;
-        import android.content.DialogInterface;
-        import android.content.Intent;
-        import android.icu.util.Calendar;
-        import android.os.Bundle;
-        import android.support.annotation.NonNull;
-        import android.support.v4.app.DialogFragment;
-        import android.app.DatePickerDialog;
-        import android.widget.DatePicker;
-        import android.widget.EditText;
-        import android.widget.TextView;
-
-/**
- * Created by Danny on 4/17/2017.
- */
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.icu.util.Calendar;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
+import android.app.DatePickerDialog;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class datePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
     String date;
-    //int y,d,m;
     TextView Text;
-   public datePickerFragment(TextView textBox){
-       Text = textBox;
-   }
+    public datePickerFragment(TextView textBox){
+        Text = textBox;
+    }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) { // code is run when the user presses 'ok' on the window
@@ -53,12 +48,4 @@ public class datePickerFragment extends DialogFragment implements DatePickerDial
 
 
     }
-/*
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        data.putExtra("date", date);
-    }
-*/
-
 }
