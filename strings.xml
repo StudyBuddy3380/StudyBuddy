@@ -1,0 +1,18 @@
+
+<resources>
+    <string name="app_name">StudyBuddy</string>
+    <string name="date_Display">Pick a Date</string>
+    <string name="date_Select">Select Date</string>
+    <string name="Prio_High">High</string>
+    <string name="Prio_Medium">Medium</string>
+    <string name="Prio_Low">Low</string>
+    <string name="message_Prio">Select Priority of Event</string>
+    <string name="message_EventType">What type of event?</string>
+    <string-array name="events_Array">
+        <item>Test</item>
+        <item>Homework</item>
+        <item>Meeting</item>
+        <item>Project</item>
+        <item>Reminder</item>
+    </string-array>
+</resources>
