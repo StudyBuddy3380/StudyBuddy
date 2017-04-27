@@ -1,5 +1,3 @@
-package com.example.jay.mutablelist;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -19,7 +17,7 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
 
 
-    String eName, eDate;
+    String returnName, returnDate, returnPriority, returnType, returnLocation;
     ListView listView;
     ArrayList<String> listItems = new ArrayList<String>();
     ArrayAdapter<String> adapter;
@@ -61,12 +59,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1  && resultCode == Add_Event.RESULT_OK) {
-            String returnName = data.getStringExtra("EventName");
-            String returnDate = data.getStringExtra("EventDate");
-            String returnPriority = data.getStringExtra("EventPriority");
-            String returnType = data.getStringExtra("EventType");
-            String returnLocation = data.getStringExtra("EventLocation");
-
+            Bundle bundle = data.getExtras();
+            returnName = bundle.getString("EventName");
+            returnDate = bundle.getString("EventDate");
+            returnPriority = data.getStringExtra("EventPriority");
+            returnType = data.getStringExtra("EventType");
+            returnLocation = data.getStringExtra("EventLocation");
 
             listItems.add((new Event(returnName, returnDate)).toString());
             adapter.notifyDataSetChanged();
