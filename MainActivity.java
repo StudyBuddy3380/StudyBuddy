@@ -22,19 +22,24 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> listItems = new ArrayList<String>();
     ArrayAdapter<String> adapter;
 
-    int count = 0;
-
-
+    /**
+     * Default method for creating the structures needed for the application logic, 
+     * and displaying those structures on the application
+     * This particular onCreate uses the basic activity with floating action button structure
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        //Assigns the xml id for list to a ListView
+        listView = (ListView) findViewById(R.id.list); 
 
-        listView = (ListView) findViewById(R.id.list);
-
+        //ArrayAdapter to convert the Event object.toString() into a readable list on screen
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
         listView.setAdapter(adapter);
-
+        
+        //Default constructors for the basic activity with floating action button structure
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -45,16 +50,19 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), Add_Event.class);
                 startActivityForResult(intent, 1);
-                //onActivityResult(1, 1, intent);
-
-
-
-               //listItems.add((new Event("Final", 2017, 5, 1)).toString());
-                //adapter.notifyDataSetChanged();
             }
         });
     }
 
+    /**
+     * onActivityResult allows the MainActivity to call the Add_Event activity for results,
+     * this pauses the MainActivity, then Add_Event returns the user entered data as a bundle, which
+     * is extracted thruogh the default onActivityResult method
+     * @param requestCode: requestCodes must match from startActivityForResult for the correct data to be
+     *                   extracted
+     * @param resultCode: resultCode is received from the child activity, to confirm successful execution
+     * @param data: the intent used to call startActivityForResult
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -94,6 +102,14 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
+/**
+ * Event class is used as the main objects for handling events provided by the user
+ * @eventName: Name of the event, provided by user
+ * @eventDate: Date of the event, in format MM/DD/YYYY
+ * @dateYear: integer value for the year of event
+ * @dateMonth: integer value for the month of event
+ * @dateDayOfMonth: integer value for the day of event
+ */
 class Event extends AppCompatActivity{
     String eventName;
     String eventDate;
@@ -101,11 +117,23 @@ class Event extends AppCompatActivity{
     int dateMonth;
     int dateDayOfMonth;
 
+    /**
+     * Constructs a new event object if the date is already in a String format
+     * @param eventName: Name of the event
+     * @param eventDate: Date of the event, in format MM/DD/YYYY
+     */
     public Event(String eventName, String eventDate){
         this.eventName = eventName;
         this.eventDate = eventDate;
     }
 
+    /**
+     * Constructs a new Event object if the date is in separate integers for month, day and year
+     * @param eventName: Name of the event
+     * @param dateYear: Numerical year of the event
+     * @param dateMonth: Numerical month of the event 
+     * @param dateDayOfMonth: Numerical day of the event
+     */
     public Event(String eventName, int dateYear, int dateMonth, int dateDayOfMonth){
         this.eventName = eventName;
         this.dateYear = dateYear;
@@ -117,15 +145,6 @@ class Event extends AppCompatActivity{
         beginTime.set(dateYear, dateMonth, dateDayOfMonth);
         Calendar endTime = Calendar.getInstance();
         endTime.set(dateYear, dateMonth, dateDayOfMonth);
-        /*Intent intent = new Intent(Intent.ACTION_INSERT)
-                .setData(CalendarContract.Events.CONTENT_URI)
-                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
-                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
-                .putExtra(CalendarContract.Events.TITLE, eventName);
-        startActivity(intent);*/
-
-
-
     }
 
     public String getEventName(){return this.eventName;}
@@ -133,6 +152,10 @@ class Event extends AppCompatActivity{
     public int getDateMonth(){return this.dateMonth;}
     public int getDateDayOfMonth(){return this.dateDayOfMonth;}
 
+    /**
+     * Builds a string for displaying the event on the List view, in format (EventName), Due: (EventDate)
+     * @return: Returns a String object of the event
+     */
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
