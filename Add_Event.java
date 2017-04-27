@@ -113,8 +113,8 @@ public class Add_Event extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent data = new Intent();
-                data.putExtra("EventName", event_Name.getText());
-                data.putExtra("EventDate",date_Display.getText());
+                data.putExtra("EventName", event_Name.getText().toString());
+                data.putExtra("EventDate",date_Display.getText().toString);
                 if (priorityLow.isChecked()) {
                     data.putExtra("EventPriority", "Low");
                 }
@@ -125,7 +125,7 @@ public class Add_Event extends AppCompatActivity {
                     data.putExtra("EventPriority", "High");
                 }
                 data.putExtra("EventType",spinner.getSelectedItem().toString());
-                data.putExtra("EventLocation",event_Location.getText());
+                data.putExtra("EventLocation",event_Location.getText().toString());
                 setResult(RESULT_OK,data);
                 finish();
 
