@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="studybuddy.csc3380.studybuddy.Add_Event">
+    tools:context="studybuddy.csc3380.studdybuddy.Add_Event">
 
     <TextView
         android:id="@+id/date_DisplayText"
@@ -152,7 +152,6 @@
         android:textAlignment="textStart"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/message_EventType" />
-
 
 
 </android.support.constraint.ConstraintLayout>
