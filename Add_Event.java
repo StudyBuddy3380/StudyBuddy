@@ -33,6 +33,9 @@ public class Add_Event extends AppCompatActivity {
     Spinner spinner;
 
     RadioButton priorityLow, priorityMed, priorityHigh;
+    /* Standard onCreate function called when the activity is created within the Activity Lifecycle.
+    *  @param savedInstanceState - Bundle containing and state information that needed to be passed to the onCreate
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,26 +43,32 @@ public class Add_Event extends AppCompatActivity {
 
 
 
+        /* Creates a spinner adapter which can feed a list of items into the spinner 
+        *  so that it can display them in a drop-down fashion
+        */
+        spinner = (Spinner)findViewById(R.id.event_Type); // maps the java variable to the XML element
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.events_Array,android.R.layout.simple_spinner_item); // initializes the adapter from a defined element in strings.xml
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); 
+        spinner.setAdapter(adapter);// applies the adapter to the spinner
 
-        spinner = (Spinner)findViewById(R.id.event_Type);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.events_Array,android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
 
+        priorityLow = (RadioButton) findViewById(R.id.radio_Prio_Low); // maps the java variable to the XML element
+        priorityMed = (RadioButton) findViewById(R.id.radio_Prio_Medium); // maps the java variable to the XML element
+        priorityHigh = (RadioButton) findViewById(R.id.radio_Prio_High); // maps the java variable to the XML element
 
-        priorityLow = (RadioButton) findViewById(R.id.radio_Prio_Low);
-        priorityMed = (RadioButton) findViewById(R.id.radio_Prio_Medium);
-        priorityHigh = (RadioButton) findViewById(R.id.radio_Prio_High);
-
+        // Calls some functions that add the functionality to the XML elements
         showDialongOnButtonClick();
         textListeners();
         finishButton();
     }
+    // called whenever a radio button is clicked
     public void onPrioButtonClick(View view)
     {
         boolean checked = ((RadioButton) view).isChecked();
     }
-
+    /* This adds the functionality to the select date button, by adding an on click listener that will
+    *  pull up a dialog fragment that will allow the user to input a date with a friendly user interface.
+    */
     public void showDialongOnButtonClick(){ //
         date_Select = (Button) findViewById(R.id.date_Select_Button); // maps the xml button to the java variable
         date_Display = (TextView) findViewById(R.id.date_DisplayText);// maps the xml text field to the java variable
@@ -75,12 +84,15 @@ public class Add_Event extends AppCompatActivity {
             }
         });
     }
+    /* Adds the fuctionality to the finish button, which involves placing relevant data into a Bundle so that 
+    *  the main page can receive the user input
+    */
     public void finishButton(){
-        finishButton = (Button) findViewById(R.id.finish_Button);
-        finishButton.setOnClickListener(new View.OnClickListener() {
+        finishButton = (Button) findViewById(R.id.finish_Button); // maps the java variable to the XML element
+        finishButton.setOnClickListener(new View.OnClickListener() { 
             @Override
             public void onClick(View v) {
-                Intent data = new Intent();
+                Intent data = new Intent(); // creates an intent that will contain the information to be passed back
                 data.putExtra("EventName", event_Name.getText().toString());
                 data.putExtra("EventDate",date_Display.getText().toString());
                 if (priorityLow.isChecked()) {
@@ -94,13 +106,15 @@ public class Add_Event extends AppCompatActivity {
                 }
                 data.putExtra("EventType",spinner.getSelectedItem().toString());
                 data.putExtra("EventLocation",event_Location.getText().toString());
-                setResult(RESULT_OK,data);
+                setResult(RESULT_OK,data); // sets the result so that the main program knows the 2nd part finished properly, and sends the Intent with data back
                 finish();
 
             }
         });
 
     }
+    /* Sets some listeners to the text fields so they are cleared when focused on
+    */
     public void textListeners(){
         event_Name = (EditText) findViewById(R.id.event_Name_Text);
         event_Location = (EditText) findViewById(R.id.location_Text);
